@@ -1,62 +1,58 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<canvas width="960" height="500"></canvas>
-<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
-<script type="text/javascript" src="d3/d3.min.js"></script>
-<script>
+<html>
+	<title>W3.CSS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1", charset="utf-8">
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	<script type="text/javascript" src="d3/d3.min.js"></script>
+	<body>
 
-var canvas = d3.select("canvas"),
-	context = canvas.node().getContext("2d"),
-	width = canvas.property("width"),
-	height = canvas.property("height"),
-	radius = 2.5;
+		<nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
+			<a href="javascript:void(0)" 
+			onclick="side_close()"
+			class="w3-closenav w3-large">Close &times;</a>
+			<a href="#">Main</a>
+			<a href="#">Hermite Field</a>
+			<a href="#">Link 3</a>
+			<a href="#">Link 4</a>
+			<a href="#">Link 5</a>
+		</nav>
 
-var points = d3.range(2000).map(phyllotaxis(10)),
-	fx = points[0][0],
-	fy = points[0][1];
+		<div id="main">
 
-var zoom = d3.zoom()
-	.scaleExtent([1 / 2, 96])
-	.on("zoom", zoomed);
+		<header class="w3-container w3-teal">
+			<span class="w3-opennav w3-xlarge" onclick="side_open()" id="openNav">&#9776;</span>
+			<h1>My Header</h1>
+		</header>
 
-canvas
-	.call(zoom)
-	.call(zoom.transform, d3.zoomIdentity);
 
-function zoomed() {
-	var t = d3.zoomIdentity
-		.translate(width / 2, height / 2)
-		.scale(d3.event.transform.k)
-		.translate(-fx, -fy);
+		<div class="w3-container">
+			<p>In this example, the sidenav is hidden (style="display:none") and is only shown when you click on the menu icon in the top left corner. When it is opened, it shifts the page content to the right (we use JavaScript to add a 25% left margin to the div element with id="main" when this happens. The value "25%" matches the value used to set the width of the sidenav. Tip: If you change the left margin to 40%, you should change the width of the sidenav to 40% as well.</p>
+			<canvas id="FieldCanvas" ></canvas>
+			<script type="text/javascript">
+				function resize_canvas(){
+					canvas = document.getElementById("FieldCanvas");
+					if (canvas.width  < window.innerWidth)
+		            {
+		            	canvas.width  = window.innerWidth;
+		            } 
+					if (canvas.height < window.innerHeight)
+		            {
+		            	canvas.height = window.innerHeight;
+		            }
+		        }
+			</script>
+			<script src="zoom.js"></script>
+		</div>
 
-	context.save();
-	context.clearRect(0, 0, width, height);
-	context.translate(t.x, t.y);
-	context.scale(t.k, t.k);
-	drawPoints();
-	context.restore();
-}
+		<footer class="w3-container w3-teal">
+			<h5>Footer</h5>
+			<p>Footer information goes here</p>
+		</footer>
 
-function drawPoints() {
-	context.beginPath();
-	points.forEach(drawPoint);
-	context.fill();
-}
+		</div>
 
-function drawPoint(point) {
-	context.moveTo(point[0] + radius, point[1]);
-	context.arc(point[0], point[1], radius, 0, 2 * Math.PI);
-}
+		<script src="sidebar.js"></script>
 
-function phyllotaxis(radius) {
-	var theta = Math.PI * (3 - Math.sqrt(5));
-	return function(i) {
-		var r = radius * Math.sqrt(i), a = theta * i;
-		return [
-			width / 2 + r * Math.cos(a),
-			height / 2 + r * Math.sin(a)
-		];
-	};
-}
+	</body>
+</html>
 
-</script>
