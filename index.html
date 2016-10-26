@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-	<title>W3.CSS</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1", charset="utf-8">
-	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
-	<script type="text/javascript" src="d3/d3.min.js"></script>
-	<body>
+	<head>
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1", charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="GUI.css">
+		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+		<script type="text/javascript" src="d3/d3.min.js"></script>
+	</head>
+ 		<body>
 
-		<nav class="w3-sidenav w3-white w3-card-2" style="display:none" id="mySidenav">
+		<nav class="w3-sidenav w3-card-2" style="display:none" id="mySidenav">
 			<a href="javascript:void(0)" 
 			onclick="side_close()"
 			class="w3-closenav w3-large">Close &times;</a>
@@ -19,34 +22,21 @@
 
 		<div id="main">
 
-		<header class="w3-container w3-teal">
+		<header class="w3-container">
 			<span class="w3-opennav w3-xlarge" onclick="side_open()" id="openNav">&#9776;</span>
-			<h1>My Header</h1>
+			<h1>Bunch Of Buoy GUI</h1>
 		</header>
 
 
-		<div class="w3-container">
+		<div class="w3-container ">
 			<p>In this example, the sidenav is hidden (style="display:none") and is only shown when you click on the menu icon in the top left corner. When it is opened, it shifts the page content to the right (we use JavaScript to add a 25% left margin to the div element with id="main" when this happens. The value "25%" matches the value used to set the width of the sidenav. Tip: If you change the left margin to 40%, you should change the width of the sidenav to 40% as well.</p>
-			<canvas id="FieldCanvas" ></canvas>
-			<script type="text/javascript">
-				function resize_canvas(){
-					canvas = document.getElementById("FieldCanvas");
-					if (canvas.width  < window.innerWidth)
-		            {
-		            	canvas.width  = window.innerWidth;
-		            } 
-					if (canvas.height < window.innerHeight)
-		            {
-		            	canvas.height = window.innerHeight;
-		            }
-		        }
-			</script>
-			<script src="zoom.js"></script>
 		</div>
 
-		<footer class="w3-container w3-teal">
-			<h5>Footer</h5>
-			<p>Footer information goes here</p>
+		<footer class="w3-container">
+			<img class="logo" id="sutd-logo" src="pictures/logo-icccri-sutd.png" >
+			<img class="logo" id="smart-logo" src="pictures/logo-icccri-smart.png">
+			<img class="logo" id="mit-logo" src="pictures/mit_logo_0__1_.png">
+
 		</footer>
 
 		</div>

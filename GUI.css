@@ -1,0 +1,14 @@
+header.w3-container{
+	background-color: #9F0000;
+}
+
+nav.w3-sidenav{
+	background-color: #970000;
+}
+
+img.logo{
+	height: auto; 
+	width: auto; 
+	/*max-width: 250px; */
+	max-height: 100px;
+}
