@@ -1,0 +1,89 @@
+.button{
+	background-color: white;
+	color: black;
+	padding: 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border: 2px solid #f44336;
+	border-radius: 4px;
+	font-size: 13px;
+	margin: 1px 1px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+
+}
+
+.button:hover {
+	background-color: #f44336; /* Red */
+	color: white;
+}
+
+.button-global {
+	position: relative;
+    display: inline-block;
+}
+
+.button-setDataRate{
+    position: relative;
+	float: right;
+}
+
+.button-dataReset{
+    position: relative;
+	float: right;
+}
+
+.button-buoyReset{
+    position: relative;
+	float: right;
+}
+
+.button-killBuoy{
+    position: relative;
+	float: right;
+
+}
+
+#formButtonSetDataRate{
+	position: relative;
+	float: right;
+}
+.buttonSetDataRate{
+    width: 150px;
+    color: black;
+	padding: 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border: 2px solid #000000;
+	border-radius: 1px;
+	font-size: 13px;
+}
+
+.targetBuoy{
+    width: 150px;
+    color: black;
+	padding: 2px 4px;
+    position: relative;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border: 2px solid #000000;
+	border-radius: 1px;
+	font-size: 13px;
+}
+
+.buoySpeedSetting{
+    width: 150px;
+    color: black;
+	padding: 2px 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	border: 2px solid #000000;
+	border-radius: 1px;
+	font-size: 13px;
+}
+

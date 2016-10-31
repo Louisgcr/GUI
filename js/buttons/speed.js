@@ -1,4 +1,4 @@
-function changeSpeedValue(){
+function formChangeSpeedValue(){
     var text = document.getElementById("setSpeed").value;
 
     if (text > 100.0){

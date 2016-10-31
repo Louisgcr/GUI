@@ -2,9 +2,13 @@
 <html>
 	<head>
 		<title></title>
+		<!--The meta data imports all the CSS and the JS files used for the UI. Some are taken from the web and an offline package is needed to access various functions-->
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" type="text/css" href="GUI.css">
+		<link rel="stylesheet" type="text/css" href="css/buttons/buttons.css">
 		<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+		<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
 		<script type="text/javascript" src="d3/d3.min.js"></script>
 		</head>
  		<body>
@@ -30,6 +34,7 @@
 
 		<div class="w3-container ">
 			<nav class="interact-button">
+				<!--Global Button should consist of global variable and various buoys that the UI detects. Currently it is hard coded which buoy is availble and this needs to be changed-->
 				<script src="js/buttons/global.js"></script>	
 				<button class="button button-global" onclick="buttonGlobal()">Global</button>
 					<div id="dropDownBuoy" class="dropDown-content">
@@ -37,18 +42,25 @@
 						<button onclick="changeTargetName('Buoy01')">Buoy01</button>
 						<button onclick="changeTargetName('Buoy02')">Buoy02</button>
 					</div>
-					<span id="targetBuoyId" class="targetBuoy" >Target Buoy:</span>
+					<span id="targetBuoyId" class="targetBuoy" >Target Buoy: Global</span>
+				<script src="js/buttons/turnMotorOnOff.js"></script>
+				<button id="buttonMotorOff" class="button button-turnMotorOff" onclick="buttonTurnMotorOff()">Turn Motors OFF</button>
+				<button id="buttonMotorOn" class="button button-turnMotorOn" onclick="buttonTurnMotorOn()">Turn Motors ON</button>
 
-				<button class="button button-turnMotorOff" onclick="alert('Hello world!')">Turn Motors OFF</button>
-				<button class="button button-turnMotorOn" onclick="alert('Hello world!')">Turn Motors ON</button>
-				<button class="button button-setDataRate" onclick="alert('Hello world!')">Set Data Rate</button>
-				<button class="button button-dataReset" onclick="alert('Hello world!')">Data Reset</button>
-				<button class="button button-buoyReset" onclick="alert('Hello world!')">Buoy Reset</button>
 				<button class="button button-killBuoy" onclick="alert('Hello world!')">Kill Buoy</button>
-			</nav>
+				<button class="button button-buoyReset" onclick="alert('Hello world!')">Buoy Reset</button>
+				<button class="button button-dataReset" onclick="alert('Hello world!')">Data Reset</button>
+				<!--TODO change the data rate thingies to actually match, now it uses speed-->
+				<script src="js/buttons/setDataRate.js"></script>
+				<form id="formButtonSetDataRate" action="javascript:formSetDataRate()">
+					<span id="spanSetDataRate" class="spanSetDataRate" >Current Data Rate:</span>
+					<input id="setRate" type="number" name="Rate" value="Rate">
+				<input type="submit">
+	</form>
+	</nav>
 			<nav class="interact-button-layer2">
 			<script src="js/buttons/speed.js"></script>
-			<form action="javascript:changeSpeedValue()">
+			<form action="javascript:formChangeSpeedValue()">
 				<span id="buoySpeedSetting" class="buoySpeedSetting" >Current Speed:</span>
 				Set Speed 0.0 ~ 100.0:
 				<input id="setSpeed" type="number" name="Speed" value="Speed">
@@ -56,10 +68,31 @@
 			</form>
 			
 			</nav>
+			<!--mapid is an API taken from leaflet, the map currently is taken from the web and more development needs to be done to ensure that the tiles can be saved and stored when no internet conenction is available-->
+			<div id="mapid"></div>
+			<script>
+				var mymap = L.map('mapid').setView([1.351927, 103.922822], 17);
 
-			<p>in this example, the sidenav is hidden (style="display:none") and is only shown when you click on the menu icon in the top left corner. when it is opened, it shifts the page content to the right (we use javascript to add a 25% left margin to the div element with id="main" when this happens. the value "25%" matches the value used to set the width of the sidenav. tip: if you change the left margin to 40%, you should change the width of the sidenav to 40% as well.</p>
+				L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
+maxZoom: 18,
+attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+id: 'mapbox.streets'
+}).addTo(mymap);
+
+			</script>
+
+			<!--Plot Data is suppose to plot the distance between bouy and the goal location currently it uses a tsv file, but this needs to be changed to add new data to the plot and plot the new data points when it arrives-->
+			<div id="plotData">
+				<svg width="650" height="500"></svg>
+				<link rel="stylesheet" type="text/css" href="css/plots/linePlots.css">
+				<script src="js/plots/linePlot.js">
+				</script>
+
+			</div>
+
 		</div>
 
+		<!--The organisation logo is added at the bottom of the page and is align left to the page-->
 		<footer class="w3-container">
 			<img class="logo" id="sutd-logo" src="pictures/logo-icccri-sutd.png" alt="SUTD Logo">
 			<img class="logo" id="smart-logo" src="pictures/logo-icccri-smart.png" alt="SMART Logo">
@@ -69,6 +102,7 @@
 
 		</div>
 
+		<!--Side bar function is used to create a dropdown menu to select the various other window available within the GUI, this however is currently not working-->
 		<script src="js/sidebar/sidebar.js"></script>
 
 	</body>
